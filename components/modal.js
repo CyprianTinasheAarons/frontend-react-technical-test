@@ -5,18 +5,13 @@ import { MediaRenderer } from "@thirdweb-dev/react";
 const Modal = ({ nft, children }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const truncate = (str, n) => {
+  const truncateDescription = (str, n) => {
     return str?.length > n ? str.substr(0, n - 1) + "..." : str;
-  };
-
-  const openModal = () => {
-    setIsOpen(true);
-
-  };
+  }
 
   return (
     <div className="flex justify-center">
-      <button onClick={() => openModal()}>{children}</button>
+      <button onClick={() =>setIsOpen(true)}>{children}</button>
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog
           as="div"
@@ -93,7 +88,7 @@ const Modal = ({ nft, children }) => {
                         {nft.id}
                       </p>
                       <p className="text-sm text-white pt-1">
-                        {truncate(nft.description, 300)}
+                        {truncateDescription(nft.description, 300)}
                       </p>
                       <div className="mt-4 absolute bottom-0 w-full justify-end flex ">
                         <a
